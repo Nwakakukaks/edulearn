@@ -1,4 +1,3 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -7,35 +6,56 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import "./global.css";
-import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
-import { arbitrum, avalanche, avalancheFuji, mainnet } from "viem/chains";
+import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi";
+import { Chain } from "viem/chains";
 import { ContractProvider } from "./ContractContext";
 import WagmiProvider from "./wagmiProvider";
+import { OCConnect } from "@opencampus/ocid-connect-js";
 
 import("buffer").then(({ Buffer }) => {
   window.Buffer = Buffer;
 });
 
-// 1. Get projectId at https://cloud.walletconnect.com
 const projectId = "2c5136315963c8541beaca2234fedf25";
 
-// 2. Create wagmiConfig
+// Define Open Campus Codex Chain
+const openCampusCodex: Chain = {
+  id: 656476,
+  name: "Open Campus Codex",
+  rpcUrls: {
+    default: { http: ['https://rpc.open-campus-codex.gelato.digital'] },
+  },
+  blockExplorers: {
+    default: {
+      name: "Codex Block Explorer",
+      url: "https://explorer.open-campus-codex.gelato.digital"
+    }
+  },
+  nativeCurrency: {
+    name: "EDU",
+    symbol: "EDU",
+    decimals: 18
+  },
+  testnet: true,
+};
+
+// Create wagmiConfig
 const metadata = {
-  name: "Lingualink",
-  description: "Lingualink built with love by Team3",
+  name: "Edulearn",
+  description: "Edulearn built with love by Team3",
   url: "https://web3modal.com",
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
-const chains = [mainnet, arbitrum];
+const chains: [Chain, ...Chain[]] = [openCampusCodex];
 const wagmiConfig = defaultWagmiConfig({
   chains,
   projectId,
   metadata,
 });
 
-// 3. Create modal
-createWeb3Modal({ wagmiConfig, projectId, chains });
+// Create modal
+createWeb3Modal({ wagmiConfig, projectId });
 
 const chakraTheme = extendTheme({
   styles: { global: { img: { maxWidth: "unset" } } },
@@ -48,21 +68,24 @@ const emotionCache = createCache({
 const container = document.getElementById("root");
 const root = createRoot(container!);
 
+const opts = {
+  redirectUri: "http://localhost:8080/redirect",
+};
+
 root.render(
   <BrowserRouter>
-    <ContractProvider>
-      <CacheProvider value={emotionCache}>
-        <ChakraProvider theme={chakraTheme}>
-          <WagmiProvider>
-            <App />
-          </WagmiProvider>
-        </ChakraProvider>
-      </CacheProvider>
-    </ContractProvider>
+    <OCConnect opts={opts} sandboxMode={true}>
+      <ContractProvider>
+        <CacheProvider value={emotionCache}>
+          <ChakraProvider theme={chakraTheme}>
+            <WagmiProvider>
+              <App />
+            </WagmiProvider>
+          </ChakraProvider>
+        </CacheProvider>
+      </ContractProvider>
+    </OCConnect>
   </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

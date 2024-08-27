@@ -73,7 +73,7 @@ const RegisterSuccessTutorDialogContent = () => {
       <p className="">
         Welcome to{" "}
         <span className="text-darkolivegreen font-semibold ">
-          Lingualink! 🥳
+          Edulearn! 🥳
         </span>{" "}
       </p>
       <p>

@@ -38,7 +38,7 @@ export const Header = () => {
           </div>
 
           <div className="relative leading-[140%] font-medium whitespace-nowrap no-underline">
-            LinguaLink
+            Edulearn
           </div>
         </div>
       </ChakraLink>

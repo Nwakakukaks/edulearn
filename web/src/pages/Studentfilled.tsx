@@ -89,7 +89,7 @@ const Studentfilled: FunctionComponent = () => {
 
                   <div className="text-black max-w-md">
                     <p className="font-bold text-9xl ">
-                      Unlock Language Learning with Lingualink🍃
+                      Unlock Language Learning with Edulearn🍃
                     </p>
                     <p className="">
                       Connect with language learners and educators worldwide
