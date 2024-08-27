@@ -12,6 +12,7 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { writeContract } from "@wagmi/core";
 import { useContract } from "../ContractContext";
 import { useNavigate } from "react-router-dom";
+import { config } from "../config";
 
 
 interface Props {
@@ -68,7 +69,7 @@ export const TestStudent = () => {
     // implement logic take_test as student.
     try {
       // Smart contract write
-      const { hash } = await writeContract({
+      const  hash  = await writeContract(config, {
         address: contractAddress,
         abi: contractAbi,
         functionName: "takeMentorTest",

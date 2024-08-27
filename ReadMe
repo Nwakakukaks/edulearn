@@ -22,7 +22,7 @@ EduLearn integrates Open Campus ID Connect SDK, offering social logins from Goog
 - **Cross-Chain Compatibility:** To enhance flexibility and interoperability, the edulearn smart contract includes functions for cross-chain compatibility. This feature enables the transfer of session fees to specified destination chains, facilitating seamless transactions across different blockchain networks.
 
 ## How we Built It
-The edulearn smart contract was developed using Solidity, leveraging the powerful capabilities of the OpenZeppelin library for ERC-20 token functionality. Building upon existing contracts such as MentorContract and linguaCCIP, we extended their functionalities to create a robust and comprehensive mentorship system tailored to language learning.
+The edulearn smart contract was developed using Solidity, leveraging the powerful capabilities of the OpenZeppelin library for ERC-20 token functionality. Building upon existing contracts such as MentorContract and eduCCIP, we extended their functionalities to create a robust and comprehensive mentorship system tailored to language learning.
 
 ## Challenges we Encountered
 - **Token Allowance Management:** Ensuring that mentees have approved the contract to spend their tokens required meticulous attention to avoid potential issues with allowances and token transfers.

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, ReactNode } from "react";
-import { getContract, getWalletClient } from "@wagmi/core";
+import { readContract, getWalletClient } from "@wagmi/core";
 import contractStuff from "./abi.json";
+import { config } from './config'
 
 // Define the contract context type
 interface ContractContextType {
@@ -29,13 +30,13 @@ export const ContractProvider: React.FC<ContractProviderProps> = ({
 }) => {
   const contractAbi = contractStuff;
   const contractAddress = "0xf685Ead4cdEB1dfdB6001FF723bFc1Bb254A5402";
-  const walletClient = getWalletClient();
+  const walletClient = getWalletClient(config);
 
   // Create the contract instance
-  const contract = getContract({
+  const contract = readContract(config, {
     address: contractAddress,
     abi: contractAbi,
-    walletClient,
+    functionName: ""
   });
 
   // Create the context value

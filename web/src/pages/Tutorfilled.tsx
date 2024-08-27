@@ -23,13 +23,8 @@ import * as Yup from "yup";
 import { writeContract } from "@wagmi/core";
 import { useContract } from "../ContractContext";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-
-
-
-=======
 import { RegisterSuccessTutorDialog } from "../dialogs/TutorTest";
->>>>>>> f657353a2ef477762d943a87c749da35a9d22d52
+import { config } from "../config";
 
 interface FormValues {
   language: string;
@@ -47,12 +42,7 @@ const validationSchema = Yup.object({
 
 const Tutorfilled: FunctionComponent = () => {
   const { contractAbi, contractAddress, contract } = useContract();
-<<<<<<< HEAD
-    const navigate = useNavigate();
-
-=======
   const navigate = useNavigate();
->>>>>>> f657353a2ef477762d943a87c749da35a9d22d52
 
   const handleNavigate = () => {
     setTimeout(() => {
@@ -64,18 +54,13 @@ const Tutorfilled: FunctionComponent = () => {
     
     try {
       // Smart contract write
-      const { hash } = await writeContract({
+      const  hash  = await writeContract(config, {
         address: contractAddress,
         abi: contractAbi,
         functionName: "registerStudent",
         args: [values.language, parseInt(values.duration)],
       });
       console.log("Smart contract hash:", hash);
-<<<<<<< HEAD
-      // After signing, link to the test
-      navigate("/tutortest");
-=======
->>>>>>> f657353a2ef477762d943a87c749da35a9d22d52
     } catch (error) {
       console.error("Form submission error:", error);
       // Handle the error, e.g., show an error message to the user

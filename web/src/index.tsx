@@ -1,62 +1,54 @@
+import '@rainbow-me/rainbowkit/styles.css';
+
+import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import "./global.css";
-import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi";
-import { Chain } from "viem/chains";
-import { ContractProvider } from "./ContractContext";
-import WagmiProvider from "./wagmiProvider";
-import { OCConnect } from "@opencampus/ocid-connect-js";
-
-import("buffer").then(({ Buffer }) => {
-  window.Buffer = Buffer;
-});
-
-const projectId = "2c5136315963c8541beaca2234fedf25";
+import {
+  RainbowKitProvider,
+  getDefaultConfig,
+  Chain,
+} from "@rainbow-me/rainbowkit";
+import { WagmiProvider } from "wagmi";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+// import { OCConnect } from '@opencampus/ocid-connect-js';
 
 // Define Open Campus Codex Chain
 const openCampusCodex: Chain = {
   id: 656476,
   name: "Open Campus Codex",
   rpcUrls: {
-    default: { http: ['https://rpc.open-campus-codex.gelato.digital'] },
+    default: { http: ["https://rpc.open-campus-codex.gelato.digital"] },
   },
   blockExplorers: {
     default: {
       name: "Codex Block Explorer",
-      url: "https://explorer.open-campus-codex.gelato.digital"
-    }
+      url: "https://explorer.open-campus-codex.gelato.digital",
+    },
   },
   nativeCurrency: {
     name: "EDU",
     symbol: "EDU",
-    decimals: 18
+    decimals: 18,
   },
   testnet: true,
 };
 
-// Create wagmiConfig
-const metadata = {
-  name: "Edulearn",
-  description: "Edulearn built with love by Team3",
-  url: "https://web3modal.com",
-  icons: ["https://avatars.githubusercontent.com/u/37784886"],
-};
-
-const chains: [Chain, ...Chain[]] = [openCampusCodex];
-const wagmiConfig = defaultWagmiConfig({
-  chains,
-  projectId,
-  metadata,
+// Configure wagmi and RainbowKit
+const wagmiConfig = getDefaultConfig({
+  appName: "EduLearn",
+  projectId: "2c5136315963c8541beaca2234fedf25",
+  chains: [openCampusCodex],
 });
 
-// Create modal
-createWeb3Modal({ wagmiConfig, projectId });
+// Create QueryClient
+const queryClient = new QueryClient();
 
+// Create Chakra UI theme
 const chakraTheme = extendTheme({
   styles: { global: { img: { maxWidth: "unset" } } },
 });
@@ -65,6 +57,7 @@ const emotionCache = createCache({
   prepend: true,
 });
 
+// Application root
 const container = document.getElementById("root");
 const root = createRoot(container!);
 
@@ -74,18 +67,16 @@ const opts = {
 
 root.render(
   <BrowserRouter>
-    <OCConnect opts={opts} sandboxMode={true}>
-      <ContractProvider>
-        <CacheProvider value={emotionCache}>
-          <ChakraProvider theme={chakraTheme}>
-            <WagmiProvider>
+    <CacheProvider value={emotionCache}>
+      <ChakraProvider theme={chakraTheme}>
+        <WagmiProvider config={wagmiConfig}>
+          <QueryClientProvider client={queryClient}>
+            <RainbowKitProvider>
               <App />
-            </WagmiProvider>
-          </ChakraProvider>
-        </CacheProvider>
-      </ContractProvider>
-    </OCConnect>
+            </RainbowKitProvider>
+          </QueryClientProvider>
+        </WagmiProvider>
+      </ChakraProvider>
+    </CacheProvider>
   </BrowserRouter>
 );
-
-reportWebVitals();

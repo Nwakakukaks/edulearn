@@ -12,11 +12,11 @@ async function main() {
   const router = "0xF694E193200268f9a4868e4Aa017A0118C9a8177";
   const LINK = "0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846";
 
-  const eduLearn = await hre.ethers.deployContract("eduLearn", [router, LINK]);
+  const eduMentor = await hre.ethers.deployContract("eduMentor", [router, LINK]);
 
-  await eduLearn.waitForDeployment();
+  await eduMentor.waitForDeployment();
 
-  console.log(`eduLearn deployed to ${eduLearn.target}`);
+  console.log(`eduMentor deployed to ${eduMentor.target}`);
 
   // Link will now be transferred to this contract
 }

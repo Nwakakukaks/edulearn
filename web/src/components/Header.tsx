@@ -13,7 +13,7 @@ import { ConnectionButton } from "./ui/ConnectButton";
 import { useDisconnect, useAccount } from "wagmi";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 interface ProfileMenuProps {
   disconnect: () => void;

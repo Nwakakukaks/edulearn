@@ -5,6 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { MatchTutorDialog } from '../dialogs/MatchTutorDialog';
 import { readContract } from "@wagmi/core";
 import { useContract } from "../ContractContext";
+import { config } from '../config';
 
 
 const tutors = [
@@ -51,7 +52,7 @@ export const TutorList = () => {
     // Reading from Contracts
     const fetchResults = async () => {
       try {
-        const results = await readContract({
+        const results = await readContract(config, {
           address: contractAddress,
           abi: contractAbi,
           functionName: "getRegisteredMentors",

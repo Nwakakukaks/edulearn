@@ -19,6 +19,7 @@ import * as Yup from "yup";
 import { writeContract } from "@wagmi/core";
 import { useContract } from "../ContractContext";
 import { useNavigate } from "react-router-dom";
+import { config } from "../config";
 
 
 interface FormValues {
@@ -44,7 +45,7 @@ const Studentfilled: FunctionComponent = () => {
 
      try {
        // Smart contract write
-       const { hash } = await writeContract({
+       const hash = await writeContract(config, {
          address: contractAddress,
          abi: contractAbi,
          functionName: "registerStudent",
