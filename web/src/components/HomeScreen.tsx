@@ -23,7 +23,7 @@ const BecomeATutorFrame = () => {
           <div className="max-w-4xl flex flex-col ">
             <p className="text-31xl font-extrabold text-darkolivegreen leading-tight">
               Unlock Language Mastery Together with{" "}
-              <span className="text-green ">Edulearn</span>{" "}
+              <span className="text-green ">EduLang</span>{" "}
             </p>
             <p className="text-black my-4 max-w-2xl text-3xl">
               A decentralised hub where learners meet skilled educators. Explore
@@ -169,7 +169,7 @@ const BecomeATutorFrame = () => {
       {/* footer session */}
       <div className="w-[818px] flex flex-col items-center justify-center py-0 px-5 box-border gap-[32px] max-w-full text-sm text-black1 mq450:gap-[32px]">
         <div className="text-center">
-          <p className="m-0">© 2024 Edulearn. All rights reserved.</p>
+          <p className="m-0">© 2024 EduLang. All rights reserved.</p>
           <p className="m-0">{`Contact Us, Terms & Agreements`}</p>
         </div>
         <Cookie />

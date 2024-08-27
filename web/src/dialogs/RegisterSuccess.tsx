@@ -71,7 +71,7 @@ const RegisterSuccessDialogContent = () => {
     <div className="pt-8 font-body-2-body-2 ">
       <img src="/testsuccess.svg" className="w-full" />
       <p className="text-black my-6 text-center mx-6">
-        Welcome to <span className="text-darkolivegreen font-semibold ">Edulearn! 🥳</span>  You're off to a great start with us.
+        Welcome to <span className="text-darkolivegreen font-semibold ">EduLang! 🥳</span>  You're off to a great start with us.
       </p>
     </div>
   );

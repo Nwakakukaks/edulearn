@@ -40,7 +40,7 @@ const openCampusCodex: Chain = {
 
 // Configure wagmi and RainbowKit
 const wagmiConfig = getDefaultConfig({
-  appName: "EduLearn",
+  appName: "EduLang",
   projectId: "2c5136315963c8541beaca2234fedf25",
   chains: [openCampusCodex],
 });

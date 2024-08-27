@@ -65,7 +65,7 @@ const RoleDialogContent = () => {
   return (
     <div className="font-body-2-body-2">
       <p className="text-13xl font-bold text-black text-center mt-4 ">
-        What brings you to Edulearn?
+        What brings you to EduLang?
       </p>
       <div className="flex space-x-2 justify-center items-center">
         <Link href="/studentfilled">
