@@ -8,15 +8,15 @@ const hre = require("hardhat");
 
 async function main() {
 
-  // this is deployed on Avalanche Fuji
+  // this is deployed on Open campus codex
   const router = "0xF694E193200268f9a4868e4Aa017A0118C9a8177";
   const LINK = "0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846";
 
-  const linguaMentor = await hre.ethers.deployContract("LinguaMentor", [router, LINK]);
+  const eduLearn = await hre.ethers.deployContract("eduLearn", [router, LINK]);
 
-  await linguaMentor.waitForDeployment();
+  await eduLearn.waitForDeployment();
 
-  console.log(`linguaMentor deployed to ${linguaMentor.target}`);
+  console.log(`eduLearn deployed to ${eduLearn.target}`);
 
   // Link will now be transferred to this contract
 }

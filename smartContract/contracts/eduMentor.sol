@@ -3,10 +3,10 @@
 pragma solidity ^0.8.0;
 
 import {MentorContract} from "contracts/mentorContract.sol";
-import {linguaCCIP} from "contracts/linguaCCIP.sol";
+import {eduCCIP} from "contracts/eduCCIP.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract LinguaMentor is MentorContract, linguaCCIP {
+contract EduMentor is MentorContract, eduCCIP {
     IERC20 USDc;
 
     struct MentorshipSessionWithFee {
@@ -48,7 +48,7 @@ contract LinguaMentor is MentorContract, linguaCCIP {
         _;
     }
 
-    constructor(address _router, address _link) linguaCCIP(_router, _link) {
+    constructor(address _router, address _link) eduCCIP(_router, _link) {
         USDc = IERC20(0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238);
     }
 
