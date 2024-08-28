@@ -13,8 +13,8 @@ module.exports = {
       url: "https://rpc.open-campus-codex.gelato.digital/", 
       chainId: 656476,
       gas: "auto",
-      gasPrice: 470000000000, // Adjust the gas price according to the network
-      accounts: [privateKey], // Use the private key for deployment
+      gasPrice: 470000000000, 
+      accounts: [privateKey], 
     },
   },
 };
